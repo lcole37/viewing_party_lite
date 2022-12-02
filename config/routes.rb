@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   root to: 'landing_page#index'
 
   resources :users, only: [:show, :new] do
-    resources :movies, only: [:index]
+    resources :movies, only: [:index, :show]
     resources :discover, only: [:index]
   end
 
   get '/register', to: 'users#new'
-  post '/users/new', to: 'users#create' 
+  post '/users/new', to: 'users#create'
 
 end
