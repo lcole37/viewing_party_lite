@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
+    if session[:user_id]
+      @user = User.find(params[:id])
+    else
+      redirect_to root_path
+      flash[:error] = "Must be registered and logged in"
+    end
   end
 
   def new

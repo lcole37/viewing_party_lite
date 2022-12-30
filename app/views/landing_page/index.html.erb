@@ -8,10 +8,13 @@
 </section>
 
 <section id="existing_users">
-  <p>Current Users:</p>
-  <ul>
-    <% @users.each do |user| %>
-      <li id="user-<%= user.id %>"><%= link_to "#{user.email}'s Dashboard", user_path(user.id) %></li>
-    <% end %>
-  </ul>
+  <% if session[:user_id] %>
+
+        <p>Current Users: </p>
+        <% @users.each do |user| %>
+            <li> <%= user.email %></li>
+        <% end %>
+
+
+  <% end %>
 </section>
