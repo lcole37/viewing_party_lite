@@ -11,6 +11,9 @@
   <nav id="home_page_link">
     <%= link_to "Home", root_path %>
   </nav>
+  <nav id="user_login" >
+    <%= link_to "Log In", "/login" unless session[:user_id]%>
+  </nav>
   <body>
     <% flash.each do |type, msg| %>
   <div>

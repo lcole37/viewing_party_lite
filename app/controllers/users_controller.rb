@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.save
+      session[:user_id] = @user.id
       redirect_to user_path(@user.id)
     elsif params[:password] != params[:password_confirmation]
       redirect_to register_path
@@ -27,11 +28,17 @@ class UsersController < ApplicationController
     # require "pry"; binding.pry
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
       redirect_to user_path(user)
     else
       redirect_to login_path
       flash[:alert] = "Bad credentials"
     end
+  end
+
+  def logout_user
+    session.delete :user_id
+    redirect_to root_path
   end
 
   private
