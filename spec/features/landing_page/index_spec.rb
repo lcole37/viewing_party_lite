@@ -37,6 +37,19 @@ RSpec.describe 'landing Page', type: :feature do
         click_link 'Home'
         expect(page.current_path).to eq root_path
       end
+
+      describe "And then try to visit '/dashboard'" do
+        before :each do
+          visit '/dashboard'
+        end
+        it "I remain on the landing page" do
+          expect(page.current_path).to eq root_path
+        end
+
+        it "And I see a message telling me that I must be logged in or registered to access my dashboard" do
+          expect(page).to have_content("Must be registered and logged in")
+        end
+      end
     end
   end
 
