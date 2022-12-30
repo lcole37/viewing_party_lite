@@ -1,10 +1,12 @@
 <h1 id="app_title"> Viewing Party </h1>
 <section id="user_creation">
+<% if session[:user_id] %>
+  <%= link_to "Logout", logout_path, method: :delete %>
+<% else %>
   <%= button_to "Create User", register_path, method: :get %>
+<% end %>
 </section>
-<section id="user_login">
-  <%= link_to "Log In", login_path, method: :get %>
-</section>
+
 <section id="existing_users">
   <p>Current Users:</p>
   <ul>

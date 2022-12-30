@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get '/login', to: 'users#login_form'
   post '/login', to: 'users#login_user'
-  # get '/users/:user_id', to: 'users#show', as: "user_show"
+  
   resources :users, only: [:show, :new] do
     resources :discover, only: [:index]
     resources :movies, only: [:index, :show] do
@@ -13,5 +13,5 @@ Rails.application.routes.draw do
 
   get '/register', to: 'users#new'
   post '/users/new', to: 'users#create'
-
+  delete '/logout', to: "users#logout_user"
 end
